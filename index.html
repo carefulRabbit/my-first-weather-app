@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>SheCodes Plus Weather Project</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <form action="#" id="search-bar">
+          <input
+            type="text"
+            name="Search"
+            id="search-input"
+            placeholder="Search"
+            autofocus="on"
+            autocomplete="off"
+          />
+        </form>
+        <button type="submit" id="location" class="locate-butt">
+          Current Location
+        </button>
+      </div>
+
+      <div class="row">
+        <!--City, date, and day-->
+        <div class="col-8 justify-content-center text-center">
+          <div class="card city-date">
+            <div class="card-body">
+              <div class="city" id="city-name">New York City</div>
+              <hr />
+              <div>
+                <span class="time" id="current-time">1200 /</span>
+                <span class="date" id="current-date">11-05-21</span>
+                <div class="day" id="current-day">Sunday</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-0">
+            <!--Current temp and weather status-->
+
+            <div class="col-6">
+              <div class="card current-temp">
+                <div class="card-body">
+                  <span style="font-size: 15px">Current Temp</span>
+                  <div>
+                    <span class="current-degrees">70 °F</span>
+                  </div>
+
+                  <div class="weather-status">CLOUDY</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <!--Current weather stats: precip, humid, AQI, Wind-->
+              <div class="card current-stats">
+                <div class="card-body">
+                  <div class="precep-left">
+                    <label for="Precipitation">Precipitation : </label>
+                    <span>18%</span>
+                  </div>
+                  <div class="humid-left">
+                    <label for="Humidity">Humidity : </label>
+                    <span>20%</span>
+                  </div>
+                  <hr />
+                  <div class="air-right">
+                    <span>15</span>
+                    <label for="AQI"> : AQI</label>
+                  </div>
+                  <div class="wind-right">
+                    <span>10 MPH</span>
+                    <label for="Wind Speed"> : Wind</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-0 foward">
+        <div class="col order-1">
+          <div class="card">
+            <div class="card-body day-1">
+              <span>Monday</span>
+              <div>
+                26°F / 20°F <span>☀</span>
+                <div>SUNNY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col order-2">
+          <div class="card">
+            <div class="card-body day-2">
+              <span>Monday</span>
+              <div>
+                26°F / 20°F <span>☁</span>
+                <div>HAZE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col order-3">
+          <div class="card">
+            <div class="card-body day-3">
+              <span>Monday</span>
+              <div>
+                26°F / 20°F <span>🌨</span>
+                <div>SNOWY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col order-4">
+          <div class="card">
+            <div class="card-body day-4">
+              <span>Monday</span>
+              <div>
+                26°F / 20°F <span>⛈</span>
+                <div>T-STORM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col order-5">
+          <div class="card">
+            <div class="card-body day-5">
+              <span>Monday</span>
+              <div>
+                26°F / 20°F <span>🌧</span>
+                <div>RAIN</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Container-->
+    <script src="src/index.js"></script>
+  </body>
+</html>

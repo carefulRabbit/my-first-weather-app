@@ -1,0 +1,155 @@
+/*Stylesheet for SheCodes Plus Weather Project*/
+
+input {
+  margin-bottom: 30px;
+  padding: 0.25em 0.5em;
+  border-radius: 20px;
+  font-size: 16px;
+  line-height: 25px;
+  border: 1px solid #e0ebeb;
+  transition: 150ms box-shadow ease-in-out;
+  outline: none;
+}
+input:focus {
+  box-shadow: 0 0 3px 3px #24527a67;
+}
+input[type="text" i] {
+  padding-left: 15px;
+}
+span {
+  padding: 0 3px;
+}
+.container {
+  /*max-width: 800px;*/
+  width: min(800px, 100%);
+  margin-top: 50px;
+  padding: 30px 20px 50px 20px;
+  border: 2px solid #24527a;
+  border-radius: 5px;
+  background-color: #e0ebebaf;
+  font-family: "Nunito", sans-serif;
+}
+@media screen and (max-width: 400px) {
+  .container,
+  body {
+    background-color: #e0ebebaf;
+    border: none;
+  }
+}
+.card {
+  border: 1px solid #e0ebeb;
+
+  border-radius: 4px;
+  transition: all 200ms ease-in-out;
+}
+.card:hover {
+  background-color: #5dabbd77;
+}
+.col-8 {
+  margin: 0 auto;
+}
+@media screen and (max-width: 400px) {
+  .col-8 {
+    width: 100%;
+  }
+}
+
+.city {
+  /*font-size: 40px;*/
+  font-size: clamp(100%, (1rem + 2vw), 27px);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.time,
+.date {
+  font-size: clamp(100%, (1rem + 2vw), 20px);
+}
+.day {
+  line-height: 30px;
+}
+
+.current-degrees {
+  font-size: clamp(100%, (1rem + 2vw), 30px);
+  line-height: 69px;
+}
+.precep-left,
+.humid-left {
+  text-align: left;
+  padding-left: 3px;
+}
+.air-right,
+.wind-right {
+  text-align: right;
+  padding-right: 3px;
+}
+@media screen and (max-width: 400px) {
+  .precep-left,
+  .humid-left,
+  .air-right,
+  .wind-right {
+    text-align: center;
+    font-size: 16px;
+  }
+}
+.city-date,
+.current-temp,
+.current-stats {
+  border: none;
+}
+
+.city-date {
+  border-bottom: 3px solid #5dacbd;
+  border-radius: 0px;
+}
+.current-temp {
+  font-size: 20px;
+  border-right: 2px solid #5dacbd;
+  border-radius: 0px;
+}
+.foward {
+  padding-top: 30px;
+  margin: 0 auto;
+  width: min(100%, 600px);
+}
+
+.day-1,
+.day-2,
+.day-3,
+.day-4,
+.day-5 {
+  text-align: center;
+  line-height: 28px;
+  font-size: 14px;
+}
+@media screen and (max-width: 400px) {
+  .day-1,
+  .day-2,
+  .day-3,
+  .day-4,
+  .day-5 {
+    font-size: 14px;
+  }
+}
+
+.temp-change {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.locate-butt {
+  border: 1px solid #24527a;
+  background-color: #24527a;
+  color: #e0ebeb;
+  padding: 0.25em 0.5em;
+  border-radius: 20px;
+  float: right;
+  transition: all 200ms ease-in-out;
+}
+.locate-butt:hover {
+  border: 1px solid #24527a;
+  background-color: #fff;
+  color: #24527a;
+}
+form {
+  display: inline;
+}
