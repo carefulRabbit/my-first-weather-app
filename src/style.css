@@ -72,15 +72,15 @@ span {
   font-size: clamp(100%, (1rem + 2vw), 30px);
   line-height: 69px;
 }
-.precep-left,
-.humid-left {
-  text-align: left;
-  padding-left: 3px;
+.weather-status {
+  text-align: center;
+  line-height: 2;
 }
-.air-right,
+.precep-left {
+  padding-top: 22px;
+}
 .wind-right {
-  text-align: right;
-  padding-right: 3px;
+  padding-bottom: 22px;
 }
 @media screen and (max-width: 400px) {
   .precep-left,
@@ -140,7 +140,7 @@ span {
   border: 1px solid #24527a;
   background-color: #24527a;
   color: #e0ebeb;
-  padding: 0.25em 0.5em;
+  padding: 0.25em 1em;
   border-radius: 20px;
   float: right;
   transition: all 200ms ease-in-out;

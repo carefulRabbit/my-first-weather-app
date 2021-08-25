@@ -80,28 +80,3 @@ function currentTemp(response) {
 
 let search = document.querySelector("#search-bar");
 search.addEventListener("submit", searchValue);
-
-//set of functions to display current location and current temperature
-
-function locationApi(position) {
-  let apiKey = "a52091a58e6937902960aa5c31a3295d";
-  let units = "imperial";
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${units}`;
-  axios.get(apiURL).then(locationName);
-}
-
-function locationName(response) {
-  currentTemp(response);
-
-  let city = document.querySelector("#city-name");
-  let location = response.data.name;
-  city.innerHTML = `${location}`;
-}
-
-function locationEvent(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(locationApi);
-}
-
-let locateButton = document.querySelector("#location");
-locateButton.addEventListener("click", locationEvent);

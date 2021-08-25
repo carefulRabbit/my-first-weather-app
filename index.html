@@ -33,9 +33,7 @@
             autocomplete="off"
           />
         </form>
-        <button type="submit" id="location" class="locate-butt">
-          Current Location
-        </button>
+        <button type="submit" id="location" class="locate-butt">Search</button>
       </div>
 
       <div class="row">
@@ -64,30 +62,27 @@
                     <span class="current-degrees">70 °F</span>
                   </div>
 
-                  <div class="weather-status">CLOUDY</div>
+                  <div class="weather-status">
+                    CLOUDY <span id="status-img"></span>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <!--Current weather stats: precip, humid, AQI, Wind-->
               <div class="card current-stats">
-                <div class="card-body">
+                <div class="card-body weather-status">
                   <div class="precep-left">
                     <label for="Precipitation">Precipitation : </label>
-                    <span>18%</span>
+                    <span id="precipitation">18%</span>
                   </div>
                   <div class="humid-left">
                     <label for="Humidity">Humidity : </label>
-                    <span>20%</span>
-                  </div>
-                  <hr />
-                  <div class="air-right">
-                    <span>15</span>
-                    <label for="AQI"> : AQI</label>
+                    <span id="humidity">20%</span>
                   </div>
                   <div class="wind-right">
-                    <span>10 MPH</span>
-                    <label for="Wind Speed"> : Wind</label>
+                    <label for="Wind Speed">Wind : </label>
+                    <span id="wind-speed">10 MPH</span>
                   </div>
                 </div>
               </div>
