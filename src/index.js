@@ -56,16 +56,20 @@ dayTime();
 
 //function to update city value based on searchbar input
 //function to display current temp based on searchbar input
+function getKey(city) {
+  let apiKey = "a52091a58e6937902960aa5c31a3295d";
+  let units = "imperial";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiURL).then(currentTemp);
+}
+
 function searchValue(event) {
   event.preventDefault();
   let city = document.querySelector("#city-name");
   let searchInput = document.querySelector("#search-input");
   let searchCity = searchInput.value;
+  getKey(searchCity);
   city.innerHTML = searchCity;
-  let apiKey = "a52091a58e6937902960aa5c31a3295d";
-  let units = "imperial";
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${apiKey}&units=${units}`;
-  axios.get(apiURL).then(currentTemp);
 }
 
 function currentTemp(response) {
@@ -76,7 +80,24 @@ function currentTemp(response) {
   let weatherStatus = response.data.weather[0].main;
   let status = document.querySelector(".weather-status");
   status.innerHTML = `${weatherStatus}`.toUpperCase();
+
+  let precipitation = document.querySelector("#precipitation");
+  let precipValue = response.data.precipitation;
+  if (precipValue === undefined || precipValue === null) {
+    precipValue = "0";
+  }
+  precipitation.innerHTML = `${precipValue} %`;
+
+  let humidity = document.querySelector("#humidity");
+  let humidValue = response.data.main.humidity;
+  humidity.innerHTML = `${humidValue} %`;
+
+  let wind = document.querySelector("#wind-speed");
+  let windSpeed = Math.round(response.data.wind.speed);
+  wind.innerHTML = `${windSpeed} MPH`;
 }
+
+getKey("New York City");
 
 let search = document.querySelector("#search-bar");
 search.addEventListener("submit", searchValue);
