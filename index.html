@@ -57,13 +57,24 @@
             <div class="col-6">
               <div class="card current-temp">
                 <div class="card-body">
-                  <span style="font-size: 15px">Current Temp</span>
-                  <div>
-                    <span class="current-degrees">70 °F</span>
+                  <span style="font-size: 15px; display: block"
+                    >Current Temp</span
+                  >
+                  <div class="icon-img">
+                    <img
+                      id="status-img"
+                      src="https://cdn.icon-icons.com/icons2/2505/PNG/512/sunny_weather_icon_150663.png"
+                      alt="weather"
+                    />
                   </div>
-
-                  <div class="weather-status">
-                    CLOUDY <span id="status-img"></span>
+                  <div class="temp-status">
+                    <span class="current-degrees">70</span>
+                    <span class="temp-change"
+                      ><span id="faren">F</span>|<span id="celcius"
+                        >C</span
+                      ></span
+                    >
+                    <span class="weather-status">CLOUDY</span>
                   </div>
                 </div>
               </div>

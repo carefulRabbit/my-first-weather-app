@@ -74,27 +74,34 @@ function searchValue(event) {
 
 function currentTemp(response) {
   let temp = Math.round(response.data.main.temp);
-  let currentDegrees = document.querySelector(".current-degrees");
-  currentDegrees.innerHTML = `${temp} °F`;
+  let tempElement = document.querySelector(".current-degrees");
+  tempElement.innerHTML = `${temp}`;
 
   let weatherStatus = response.data.weather[0].main;
-  let status = document.querySelector(".weather-status");
-  status.innerHTML = `${weatherStatus}`.toUpperCase();
+  let statusElement = document.querySelector(".weather-status");
+  statusElement.innerHTML = `${weatherStatus}`.toUpperCase();
 
-  let precipitation = document.querySelector("#precipitation");
+  let precipitationElement = document.querySelector("#precipitation");
   let precipValue = response.data.precipitation;
   if (precipValue === undefined || precipValue === null) {
     precipValue = "0";
   }
-  precipitation.innerHTML = `${precipValue} %`;
+  precipitationElement.innerHTML = `${precipValue} %`;
 
-  let humidity = document.querySelector("#humidity");
+  let humidityElement = document.querySelector("#humidity");
   let humidValue = response.data.main.humidity;
-  humidity.innerHTML = `${humidValue} %`;
+  humidityElement.innerHTML = `${humidValue} %`;
 
-  let wind = document.querySelector("#wind-speed");
+  let windElement = document.querySelector("#wind-speed");
   let windSpeed = Math.round(response.data.wind.speed);
-  wind.innerHTML = `${windSpeed} MPH`;
+  windElement.innerHTML = `${windSpeed} MPH`;
+
+  let iconElement = document.querySelector("#status-img");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 getKey("New York City");

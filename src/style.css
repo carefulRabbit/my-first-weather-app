@@ -70,17 +70,18 @@ span {
 
 .current-degrees {
   font-size: clamp(100%, (1rem + 2vw), 30px);
-  line-height: 69px;
+  line-height: 2.3;
+  vertical-align: middle;
 }
 .weather-status {
   text-align: center;
   line-height: 2;
 }
 .precep-left {
-  padding-top: 22px;
+  padding-top: 17px;
 }
 .wind-right {
-  padding-bottom: 22px;
+  padding-bottom: 17px;
 }
 @media screen and (max-width: 400px) {
   .precep-left,
@@ -169,4 +170,40 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+
+.icon-img {
+  float: left;
+  max-width: 50%;
+}
+.temp-status {
+  float: right;
+  max-width: 50%;
+}
+@media screen and (max-width: 400px) {
+  .icon-img {
+    max-width: 30%;
+  }
+  .temp-status {
+    max-width: 70%;
+  }
+}
+
+.temp-change {
+  font-size: 17px;
+  cursor: pointer;
+}
+#celcius,
+#faren {
+  color: #24527a;
+  font-weight: 600;
+  transition: all 150ms ease-in-out;
+}
+#celcius:hover {
+  color: #5dacbd;
+  text-shadow: 0 0 #24527a;
+}
+#faren:hover {
+  color: #5dacbd;
+  text-shadow: 0 0 #24527a;
 }
