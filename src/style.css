@@ -69,7 +69,7 @@ span {
 }
 
 .current-degrees {
-  font-size: clamp(100%, (1rem + 2vw), 30px);
+  font-size: clamp(100%, (1rem + 2vw), 40px);
   line-height: 2.3;
   vertical-align: middle;
 }
@@ -78,15 +78,14 @@ span {
   line-height: 2;
 }
 .precep-left {
-  padding-top: 17px;
+  padding-top: 13px;
 }
 .wind-right {
-  padding-bottom: 17px;
+  padding-bottom: 13px;
 }
 @media screen and (max-width: 400px) {
   .precep-left,
   .humid-left,
-  .air-right,
   .wind-right {
     text-align: center;
     font-size: 16px;
