@@ -73,12 +73,13 @@ function searchValue(event) {
 }
 
 function currentTemp(response) {
-  let temp = Math.round(response.data.main.temp);
+  baseTemperature = response.data.main.temp;
+  let temp = Math.round(baseTemperature);
   let tempElement = document.querySelector(".current-degrees");
   tempElement.innerHTML = `${temp}`;
 
   let weatherStatus = response.data.weather[0].main;
-  let statusElement = document.querySelector(".weather-status");
+  let statusElement = document.querySelector(".weather-status-name");
   statusElement.innerHTML = `${weatherStatus}`.toUpperCase();
 
   let precipitationElement = document.querySelector("#precipitation");
@@ -104,7 +105,34 @@ function currentTemp(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-getKey("New York City");
+function celciusConvert(event) {
+  event.preventDefault();
+  let celciusTemperature = (baseTemperature - 32) / 1.8;
+  let tempElement = document.querySelector(".current-degrees");
+  tempElement.innerHTML = Math.round(celciusTemperature);
+  farenheit.classList.remove("active");
+  celcius.classList.add("active");
+}
+
+function farenheitRevert(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector(".current-degrees");
+  tempElement.innerHTML = Math.round(baseTemperature);
+  farenheit.classList.add("active");
+  celcius.classList.remove("active");
+}
+
+let baseTemperature = null;
 
 let search = document.querySelector("#search-bar");
 search.addEventListener("submit", searchValue);
+let searchButton = document.querySelector("#location");
+searchButton.addEventListener("click", searchValue);
+
+let celcius = document.querySelector("#celcius");
+celcius.addEventListener("click", celciusConvert);
+
+let farenheit = document.querySelector("#faren");
+farenheit.addEventListener("click", farenheitRevert);
+
+getKey("New York City");

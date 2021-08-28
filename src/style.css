@@ -69,7 +69,7 @@ span {
 }
 
 .current-degrees {
-  font-size: clamp(100%, (1rem + 2vw), 40px);
+  font-size: clamp(100%, (1rem + 2vw), 38px);
   line-height: 2.3;
   vertical-align: middle;
 }
@@ -132,7 +132,7 @@ span {
 }
 
 .temp-change {
-  font-size: 20px;
+  font-size: 70%;
   cursor: pointer;
 }
 
@@ -188,14 +188,15 @@ a:hover {
   }
 }
 
-.temp-change {
-  font-size: 17px;
+#temp-change {
+  font-size: 1em;
   cursor: pointer;
 }
 #celcius,
 #faren {
   color: #24527a;
-  font-weight: 600;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
   transition: all 150ms ease-in-out;
 }
 #celcius:hover {
@@ -205,4 +206,24 @@ a:hover {
 #faren:hover {
   color: #5dacbd;
   text-shadow: 0 0 #24527a;
+}
+
+#temp-change .active {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 700;
+  cursor: default;
+}
+#temp-change .active:hover {
+  color: rgba(0, 0, 0, 0.7);
+  text-shadow: none;
+}
+
+.weather-status-name {
+  font-size: 0.8em;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 50%;
+  margin: 0;
 }
