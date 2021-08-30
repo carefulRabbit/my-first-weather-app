@@ -54,6 +54,14 @@ function dayTime() {
 }
 dayTime();
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
+  return days[day];
+}
+
 //function to update city value based on searchbar input
 //function to display current temp based on searchbar input
 function getKey(city) {
@@ -103,6 +111,8 @@ function currentTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function celciusConvert(event) {
@@ -122,17 +132,56 @@ function farenheitRevert(event) {
   celcius.classList.remove("active");
 }
 
+function getForecast(coordinates) {
+  let apiKey = "a52091a58e6937902960aa5c31a3295d";
+  let units = "imperial";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,hourly&appid=${apiKey}&units=${units}`;
+  axios.get(apiURL).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+            <div class="forecast">
+              <span>${formatDay(forecastDay.dt)}</span>
+              <div>
+                ${Math.round(forecastDay.temp.max)}°F / ${Math.round(
+          forecastDay.temp.min
+        )}°F
+                <div>
+                  <img
+                    src="http://openweathermap.org/img/wn/${
+                      forecastDay.weather[0].icon
+                    }@2x.png"
+                    alt="weather"
+                    style="width: 30px"
+                  />
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          `;
+    }
+  });
+  forecastHTML = forecastHTML + "</div>";
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let baseTemperature = null;
 
 let search = document.querySelector("#search-bar");
 search.addEventListener("submit", searchValue);
 let searchButton = document.querySelector("#location");
 searchButton.addEventListener("click", searchValue);
-
-let celcius = document.querySelector("#celcius");
-celcius.addEventListener("click", celciusConvert);
-
-let farenheit = document.querySelector("#faren");
-farenheit.addEventListener("click", farenheitRevert);
 
 getKey("New York City");

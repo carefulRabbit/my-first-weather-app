@@ -106,27 +106,20 @@ span {
   border-right: 2px solid #5dacbd;
   border-radius: 0px;
 }
-.foward {
-  padding-top: 30px;
-  margin: 0 auto;
+.forecast-days {
+  padding: 10px 0;
+  margin: 20px auto;
   width: min(100%, 600px);
+  background-color: white;
 }
 
-.day-1,
-.day-2,
-.day-3,
-.day-4,
-.day-5 {
+.forecast {
   text-align: center;
   line-height: 28px;
   font-size: 14px;
 }
 @media screen and (max-width: 400px) {
-  .day-1,
-  .day-2,
-  .day-3,
-  .day-4,
-  .day-5 {
+  .forecast {
     font-size: 14px;
   }
 }
@@ -188,34 +181,10 @@ a:hover {
   }
 }
 
-#temp-change {
-  font-size: 1em;
-  cursor: pointer;
-}
-#celcius,
 #faren {
-  color: #24527a;
+  font-size: 1em;
   font-family: "Nunito", sans-serif;
-  font-weight: 400;
-  transition: all 150ms ease-in-out;
-}
-#celcius:hover {
-  color: #5dacbd;
-  text-shadow: 0 0 #24527a;
-}
-#faren:hover {
-  color: #5dacbd;
-  text-shadow: 0 0 #24527a;
-}
-
-#temp-change .active {
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 700;
-  cursor: default;
-}
-#temp-change .active:hover {
-  color: rgba(0, 0, 0, 0.7);
-  text-shadow: none;
+  font-weight: 300;
 }
 
 .weather-status-name {
