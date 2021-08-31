@@ -1,17 +1,24 @@
 /*Stylesheet for SheCodes Plus Weather Project*/
+:root {
+  --clr-light-100: #fbfcfd;
+  --clr-med-light-300: #8dc6ff8e;
+  --clr-med-dark-500: #34495e;
+  --clr-dark-700: #22313fce;
+}
 
+/* Element Styles */
 input {
   margin-bottom: 30px;
   padding: 0.25em 0.5em;
   border-radius: 20px;
   font-size: 16px;
   line-height: 25px;
-  border: 1px solid #e0ebeb;
+  border: 1px solid var(--clr-light-100);
   transition: 150ms box-shadow ease-in-out;
   outline: none;
 }
 input:focus {
-  box-shadow: 0 0 3px 3px #24527a67;
+  box-shadow: 0 0 3px 3px var(--clr-med-dark-500);
 }
 input[type="text" i] {
   padding-left: 15px;
@@ -19,32 +26,48 @@ input[type="text" i] {
 span {
   padding: 0 3px;
 }
+
+a {
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--clr-med-dark-500);
+  transition: all 150ms ease-in-out;
+  font-family: "Courier New", Courier, monospace;
+}
+a:hover {
+  text-decoration: underline;
+  color: var(--clr-dark-700);
+}
+
+form {
+  display: inline;
+}
+
+/* Class Styles + Media Queries */
+
 .container {
   /*max-width: 800px;*/
   width: min(800px, 100%);
   margin-top: 50px;
   padding: 30px 20px 50px 20px;
-  border: 2px solid #24527a;
+  border: 2px solid var(--clr-dark-700);
   border-radius: 5px;
-  background-color: #e0ebebaf;
+  background-color: var(--clr-med-light-300);
   font-family: "Nunito", sans-serif;
+  color: var(--clr-dark-700);
 }
 @media screen and (max-width: 400px) {
   .container,
   body {
-    background-color: #e0ebebaf;
+    background-color: var(--clr-med-light-300);
     border: none;
   }
 }
 .card {
-  border: 1px solid #e0ebeb;
+  border: 1px solid var(--clr-light-100);
+  background-color: var(--clr-light-100);
+}
 
-  border-radius: 4px;
-  transition: all 200ms ease-in-out;
-}
-.card:hover {
-  background-color: #5dabbd77;
-}
 .col-8 {
   margin: 0 auto;
 }
@@ -77,14 +100,14 @@ span {
   text-align: center;
   line-height: 2;
 }
-.precep-left {
+.feels-like {
   padding-top: 13px;
 }
 .wind-right {
   padding-bottom: 13px;
 }
 @media screen and (max-width: 400px) {
-  .precep-left,
+  .feels-like,
   .humid-left,
   .wind-right {
     text-align: center;
@@ -98,19 +121,20 @@ span {
 }
 
 .city-date {
-  border-bottom: 3px solid #5dacbd;
+  border-bottom: 3px solid var(--clr-dark-700);
   border-radius: 0px;
 }
 .current-temp {
   font-size: 20px;
-  border-right: 2px solid #5dacbd;
+  border-right: 2px solid var(--clr-dark-700);
   border-radius: 0px;
 }
 .forecast-days {
   padding: 10px 0;
   margin: 20px auto;
   width: min(100%, 600px);
-  background-color: white;
+  background-color: var(--clr-light-100);
+  border-radius: 4px;
 }
 
 .forecast {
@@ -124,27 +148,19 @@ span {
   }
 }
 
-.temp-change {
-  font-size: 70%;
-  cursor: pointer;
-}
-
 .locate-butt {
-  border: 1px solid #24527a;
-  background-color: #24527a;
-  color: #e0ebeb;
+  border: 1px solid var(--clr-med-dark-500);
+  background-color: var(--clr-med-dark-500);
+  color: var(--clr-light-100);
   padding: 0.25em 1em;
   border-radius: 20px;
   float: right;
   transition: all 200ms ease-in-out;
 }
 .locate-butt:hover {
-  border: 1px solid #24527a;
-  background-color: #fff;
-  color: #24527a;
-}
-form {
-  display: inline;
+  border: 1px solid var(--clr-med-dark-500);
+  background-color: var(--clr-light-100);
+  color: var(--clr-med-dark-500);
 }
 
 .github-link {
@@ -152,16 +168,6 @@ form {
   width: 60%;
   padding-top: 20px;
   text-align: center;
-}
-a {
-  text-decoration: none;
-  font-size: 16px;
-  color: #24527a;
-  transition: all 150ms ease-in-out;
-  font-family: "Courier New", Courier, monospace;
-}
-a:hover {
-  text-decoration: underline;
 }
 
 .icon-img {
@@ -181,18 +187,24 @@ a:hover {
   }
 }
 
-#faren {
-  font-size: 1em;
-  font-family: "Nunito", sans-serif;
-  font-weight: 300;
-}
-
 .weather-status-name {
   font-size: 0.8em;
   display: block;
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 50%;
+  right: 0;
   margin: 0;
+}
+
+.light-day,
+.light-temp {
+  opacity: 80%;
+}
+
+/* ID Styles */
+#faren {
+  font-size: 1em;
+  font-family: "Nunito", sans-serif;
+  font-weight: 300;
 }
