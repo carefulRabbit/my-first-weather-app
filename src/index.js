@@ -24,36 +24,7 @@ let months = [
   "December",
 ];
 
-let now = new Date();
-//function to display current day and time
-function dayTime() {
-  let day = days[now.getDay()];
-  let month = months[now.getMonth()];
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  let dayDate = now.getDay();
-  if (dayDate < 10) {
-    dayDate = `0${dayDate}`;
-  }
-  let monthDate = now.getMonth();
-  if (monthDate < 10) {
-    monthDate = `0${monthDate}`;
-  }
-  let year = now.getFullYear();
-
-  let currentTime = document.querySelector("#current-time");
-  let currentDate = document.querySelector("#current-date");
-  let currentDay = document.querySelector("#current-day");
-
-  currentDay.innerHTML = `${day}`;
-  currentTime.innerHTML = `${hours}:${minutes}  /`;
-  currentDate.innerHTML = `${dayDate}-${monthDate}-${year}`;
-}
-dayTime();
-
+//function to convert day/time codes into readable values for forecast
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -62,8 +33,45 @@ function formatDay(timestamp) {
   return days[day];
 }
 
-//function to update city value based on searchbar input
-//function to display current temp based on searchbar input
+//function to display current day and time + attempt at nightmode
+function formatTime(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = days[date.getDay()];
+  let hours = date.getHours();
+  if (hours < 24 && hours > 18) {
+    let style = document.createElement(`style`);
+    style.innerHTML = `:root { 
+  --clr-light-100: #22313fce ;
+  --clr-med-light-300: #34495e ;
+  --clr-med-dark-500: #8dc6ff8e;
+  --clr-dark-700: #fbfcfd;
+    }`;
+    let ref = document.querySelector(`script`);
+    ref.parentNode.insertBefore(style, ref);
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let dayDate = date.getDay();
+  if (dayDate < 10) {
+    dayDate = `0${dayDate}`;
+  }
+  let monthDate = date.getMonth();
+  if (monthDate < 10) {
+    monthDate = `0${monthDate}`;
+  }
+  let year = date.getFullYear();
+  let currentTime = document.querySelector("#current-time");
+  let currentDate = document.querySelector("#current-date");
+  let currentDay = document.querySelector("#current-day");
+
+  currentDay.innerHTML = `${day}`;
+  currentTime.innerHTML = `${hours}:${minutes}  /`;
+  currentDate.innerHTML = `${dayDate}-${monthDate}-${year}`;
+}
+
+//api current weather call
 function getKey(city) {
   let apiKey = "a52091a58e6937902960aa5c31a3295d";
   let units = "imperial";
@@ -71,6 +79,7 @@ function getKey(city) {
   axios.get(apiURL).then(currentTemp);
 }
 
+//function to display search input as value on page
 function searchValue(event) {
   event.preventDefault();
   let city = document.querySelector("#city-name");
@@ -80,6 +89,7 @@ function searchValue(event) {
   city.innerHTML = searchCity;
 }
 
+//function to set all of the current weather data
 function currentTemp(response) {
   baseTemperature = response.data.main.temp;
   let temp = Math.round(baseTemperature);
@@ -90,12 +100,11 @@ function currentTemp(response) {
   let statusElement = document.querySelector(".weather-status-name");
   statusElement.innerHTML = `${weatherStatus}`.toUpperCase();
 
-  let precipitationElement = document.querySelector("#precipitation");
-  let precipValue = response.data.precipitation;
-  if (precipValue === undefined || precipValue === null) {
-    precipValue = "0";
-  }
-  precipitationElement.innerHTML = `${precipValue} %`;
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let feelValue = Math.round(response.data.main.feels_like);
+  console.log(response.data);
+
+  feelsLikeElement.innerHTML = `${feelValue} °F`;
 
   let humidityElement = document.querySelector("#humidity");
   let humidValue = response.data.main.humidity;
@@ -111,27 +120,11 @@ function currentTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
+  formatTime(response.data.dt);
   getForecast(response.data.coord);
 }
 
-function celciusConvert(event) {
-  event.preventDefault();
-  let celciusTemperature = (baseTemperature - 32) / 1.8;
-  let tempElement = document.querySelector(".current-degrees");
-  tempElement.innerHTML = Math.round(celciusTemperature);
-  farenheit.classList.remove("active");
-  celcius.classList.add("active");
-}
-
-function farenheitRevert(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector(".current-degrees");
-  tempElement.innerHTML = Math.round(baseTemperature);
-  farenheit.classList.add("active");
-  celcius.classList.remove("active");
-}
-
+//api forecast call
 function getForecast(coordinates) {
   let apiKey = "a52091a58e6937902960aa5c31a3295d";
   let units = "imperial";
@@ -139,6 +132,7 @@ function getForecast(coordinates) {
   axios.get(apiURL).then(displayForecast);
 }
 
+//function to display forecast data and inject into page
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
@@ -151,22 +145,24 @@ function displayForecast(response) {
         forecastHTML +
         `<div class="col-2">
             <div class="forecast">
-              <span>${formatDay(forecastDay.dt)}</span>
+              <span class="light-day">${formatDay(forecastDay.dt)}</span>
               <div>
-                ${Math.round(forecastDay.temp.max)}°F / ${Math.round(
+                ${Math.round(
+                  forecastDay.temp.max
+                )}°F / <span class="light-temp">${Math.round(
           forecastDay.temp.min
-        )}°F
+        )}°F</span>
                 <div>
                   <img
                     src="http://openweathermap.org/img/wn/${
                       forecastDay.weather[0].icon
                     }@2x.png"
                     alt="weather"
-                    style="width: 30px"
+                    style="width: 35px"
                   />
                 </div>
               </div>
-              
+              <div>${forecastDay.weather[0].main.toUpperCase()}</div>
             </div>
           </div>
           `;
